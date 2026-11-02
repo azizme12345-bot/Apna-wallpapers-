@@ -1,0 +1,6 @@
+{
+  "name": "Apna Wallpaper",
+  "description": "Premium mobile-first 9:16 phone wallpapers with categories, preview modal, download, and custom uploads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
