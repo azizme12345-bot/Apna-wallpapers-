@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: SITE_URL/sitemap.xml
+Sitemap: https://apna-wallpapers-a3pf.vercel.app/sitemap.xml
