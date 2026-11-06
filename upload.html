@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Wallpaper - Apna Wallpaper</title>
+  <meta name="description" content="Upload and share your wallpapers with everyone on Apna Wallpaper.">
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://apna-wallpapers-a3pf.vercel.app/upload.html" />
+  <link rel="icon" type="image/png" href="/apna-wallpaper-logo-512.png" />
+  <link rel="apple-touch-icon" href="/apna-wallpaper-logo-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #0B0B0B;
+      --card: #1A1A1A;
+      --border: #2A2A2A;
+      --gold: #C9A227;
+      --gold-hover: #b8921e;
+      --white: #FFFFFF;
+      --gray: #A0A0A0;
+      --radius: 12px;
+      --header-h: 66px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-h);
+      z-index: 100;
+      background: rgba(11, 11, 11, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .brand-logo {
+      display: block;
+      border-radius: 8px;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .back-btn {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: var(--gold);
+      color: #0B0B0B;
+    }
+
+    /* CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: calc(var(--header-h) + 40px) 16px 60px;
+      flex: 1;
+    }
+
+    /* UPLOAD SECTION */
+    .upload-section {
+      padding: 32px 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .upload-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .upload-subtitle {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+
+    .upload-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .file-input {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      border: 1px dashed #3a3a3a;
+      border-radius: 8px;
+      color: var(--gray);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .file-input:focus, .file-input:hover {
+      border-color: var(--gold);
+    }
+
+    .file-preview-wrap {
+      display: none;
+      margin-top: 10px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .file-preview-img {
+      width: 72px;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .file-preview-name {
+      font-size: 12px;
+      color: var(--gray);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 240px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      background: #111111;
+      color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-input::placeholder {
+      color: #666;
+    }
+
+    .upload-error {
+      display: none;
+      color: #ff6b6b;
+      font-size: 13px;
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .upload-success {
+      display: none;
+      color: #4cd137;
+      font-size: 14px;
+      background: rgba(76, 209, 55, 0.1);
+      border: 1px solid rgba(76, 209, 55, 0.3);
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .upload-success a {
+      color: var(--gold);
+      font-weight: 600;
+      text-decoration: underline;
+      margin-left: 6px;
+    }
+
+    .upload-btn {
+      background: var(--gold);
+      color: #0B0B0B;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .upload-btn:hover {
+      background: var(--gold-hover);
+    }
+
+    .upload-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .upload-note {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--gray);
+      font-size: 12px;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/index.html" class="brand" aria-label="Apna Wallpaper Home">
+        <img src="/apna-wallpaper-logo-512.png" alt="Apna Wallpaper logo" width="34" height="34" class="brand-logo" />
+        <span class="brand-name">Apna Wallpaper</span>
+      </a>
+      <a href="/index.html" class="back-btn">Back to wallpapers</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="upload-section">
+      <h1 class="upload-title">Upload Your Wallpaper</h1>
+      <p class="upload-subtitle">Share your wallpaper with everyone on this site.</p>
+
+      <div class="upload-error" id="upload-error" role="alert"></div>
+      <div class="upload-success" id="upload-success" role="status">
+        Wallpaper uploaded! <a href="/index.html">View wallpapers</a>
+      </div>
+
+      <form class="upload-form" id="upload-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="wallpaper-file">Choose Image</label>
+          <input type="file" id="wallpaper-file" class="file-input" accept="image/*" required>
+          <div class="file-preview-wrap" id="file-preview-wrap">
+            <img id="file-preview-img" class="file-preview-img" alt="Uploaded preview">
+            <span id="file-preview-name" class="file-preview-name"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="uploader-name">Your Name (Optional)</label>
+          <input type="text" id="uploader-name" class="form-input" placeholder="Anonymous" maxlength="40">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="upload-category">Category</label>
+          <select id="upload-category" class="form-select"></select>
+        </div>
+
+        <button type="submit" id="submit-btn" class="upload-btn">Upload Wallpaper</button>
+        <p class="upload-note">Your wallpaper will be visible to everyone on this site.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 Apna Wallpaper</span>
+      <span>All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    const supabaseUrl = 'https://klhysrbbbvlmzwdycuky.supabase.co';
+    const supabaseKey = 'sb_publishable_AoXsUMgxJi8a98qlL-N-NA_eeQTcOI3';
+    const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    const CATEGORIES = ["All", "Islamic", "Nature", "Aesthetic", "Minimal", "Abstract", "Dark", "Cars", "Space", "Flowers"];
+    const UPLOAD_CATEGORIES = CATEGORIES.filter(cat => cat !== "All");
+
+    const uploadCategorySelect = document.getElementById("upload-category");
+    function populateCategories() {
+      uploadCategorySelect.innerHTML = "";
+      const savedCategory = localStorage.getItem("apna-wallpaper-last-category");
+
+      let defaultCat = UPLOAD_CATEGORIES[0];
+      if (savedCategory && UPLOAD_CATEGORIES.includes(savedCategory)) {
+        defaultCat = savedCategory;
+      }
+
+      UPLOAD_CATEGORIES.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        if (cat === defaultCat) {
+          opt.selected = true;
+        }
+        uploadCategorySelect.appendChild(opt);
+      });
+    }
+    populateCategories();
+
+    uploadCategorySelect.addEventListener("change", () => {
+      localStorage.setItem("apna-wallpaper-last-category", uploadCategorySelect.value);
+    });
+
+    const uploadForm = document.getElementById("upload-form");
+    const fileInput = document.getElementById("wallpaper-file");
+    const previewWrap = document.getElementById("file-preview-wrap");
+    const previewImg = document.getElementById("file-preview-img");
+    const previewName = document.getElementById("file-preview-name");
+    const uploaderNameInput = document.getElementById("uploader-name");
+    const uploadError = document.getElementById("upload-error");
+    const uploadSuccess = document.getElementById("upload-success");
+    const submitBtn = document.getElementById("submit-btn");
+
+    let selectedFileObjectUrl = null;
+
+    function showUploadError(msg) {
+      uploadError.textContent = msg;
+      uploadError.style.display = "block";
+      uploadSuccess.style.display = "none";
+    }
+
+    function clearUploadError() {
+      uploadError.textContent = "";
+      uploadError.style.display = "none";
+    }
+
+    fileInput.addEventListener("change", () => {
+      clearUploadError();
+      const file = fileInput.files && fileInput.files[0];
+
+      if (selectedFileObjectUrl) {
+        URL.revokeObjectURL(selectedFileObjectUrl);
+        selectedFileObjectUrl = null;
+      }
+      previewWrap.style.display = "none";
+
+      if (!file) return;
+
+      if (!file.type.startsWith("image/")) {
+        showUploadError("Please select a valid image file (JPEG, PNG, WEBP).");
+        fileInput.value = "";
+        return;
+      }
+
+      if (file.size > 15 * 1024 * 1024) {
+        showUploadError("Image file size exceeds the 15 MB limit. Please select a smaller image.");
+        fileInput.value = "";
+        return;
+      }
+
+      selectedFileObjectUrl = URL.createObjectURL(file);
+      previewImg.src = selectedFileObjectUrl;
+      previewName.textContent = file.name;
+      previewWrap.style.display = "flex";
+    });
+
+    function fileToDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    uploadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearUploadError();
+
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) {
+        showUploadError("Please select an image file to upload.");
+        return;
+      }
+
+      if (!file.type.startsWith("image/")) {
+        showUploadError("Please select a valid image file.");
+        return;
+      }
+
+      if (file.size > 15 * 1024 * 1024) {
+        showUploadError("Image file size exceeds the 15 MB limit.");
+        return;
+      }
+
+      const rawName = uploaderNameInput.value.trim();
+      const uploaderName = rawName ? rawName : "Anonymous";
+      const chosenCategory = uploadCategorySelect.value;
+      const title = "Uploaded by " + uploaderName;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Uploading...";
+
+      let publicUrl = "";
+
+      try {
+        const fileExt = file.name.split('.').pop() || 'jpg';
+        const fileName = `${Date.now()}-${Math.floor(Math.random() * 1000000)}.${fileExt}`;
+
+        try {
+          const { data: uploadData, error: uploadErrorObj } = await supabaseClient.storage
+            .from("wallpapers")
+            .upload(fileName, file, {
+              cacheControl: '3600',
+              upsert: true,
+              contentType: file.type
+            });
+
+          if (!uploadErrorObj) {
+            const { data: publicUrlData } = supabaseClient.storage
+              .from("wallpapers")
+              .getPublicUrl(fileName);
+            publicUrl = publicUrlData.publicUrl;
+          }
+        } catch (storageErr) {
+          console.warn("Storage upload network error, falling back to data URL:", storageErr);
+        }
+
+        if (!publicUrl) {
+          publicUrl = await fileToDataUrl(file);
+        }
+
+        const { error: insertError } = await supabaseClient
+            .from('wallpapers')
+            .insert([{
+              title: title,
+              category: chosenCategory,
+              image_url: publicUrl,
+              uploaded_by: uploaderName
+            }]);
+
+        if (insertError) throw insertError;
+
+        const currentCategory = uploadCategorySelect.value;
+        uploadForm.reset();
+        uploadCategorySelect.value = currentCategory;
+        previewWrap.style.display = "none";
+        if (selectedFileObjectUrl) {
+          selectedFileObjectUrl = null;
+        }
+
+        uploadSuccess.style.display = "block";
+      } catch (err) {
+        console.error("Upload error:", err);
+        showUploadError("Failed to upload wallpaper. Please check network connection and try again.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Upload Wallpaper";
+      }
+    });
+  </script>
+</body>
+</html>

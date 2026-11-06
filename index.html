@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apna Wallpaper - Mobile Wallpapers</title>
-  <meta name="description" content="Discover premium mobile phone wallpapers. Explore Islamic, Nature, and Aesthetic 9:16 wallpapers.">
+  <meta name="description" content="Discover premium mobile phone wallpapers. Explore Islamic, Nature, Aesthetic and more 9:16 wallpapers.">
   <meta name="google-site-verification" content="e2RrqWDlKxHOPt0hT0SbW2dvhjsUgITfsuQwy6ZZhjY" />
   <link rel="canonical" href="https://apna-wallpapers-a3pf.vercel.app/" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Apna Wallpaper - Mobile Wallpapers">
-  <meta property="og:description" content="Discover premium mobile phone wallpapers. Explore Islamic, Nature, and Aesthetic 9:16 wallpapers.">
+  <meta property="og:description" content="Discover premium mobile phone wallpapers. Explore 9:16 wallpapers for your device.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://apna-wallpapers-a3pf.vercel.app/" />
   <meta property="og:image" content="https://apna-wallpapers-a3pf.vercel.app/apna-wallpaper-logo-512.png" />
@@ -90,17 +90,8 @@
     }
 
     .brand-logo {
-      width: 34px;
-      height: 34px;
-      border: 1.5px solid var(--gold);
-      color: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
       border-radius: 8px;
-      font-size: 18px;
-      font-weight: 700;
-      user-select: none;
     }
 
     .brand-name {
@@ -117,6 +108,7 @@
       border-radius: 8px;
       font-weight: 600;
       font-size: 13px;
+      text-decoration: none;
       transition: background-color 0.2s ease, transform 0.1s ease;
     }
 
@@ -124,20 +116,31 @@
       background: var(--gold-hover);
     }
 
-    .header-upload-btn:active {
-      transform: scale(0.98);
-    }
-
-    /* MAIN CONTAINER */
-    .container {
+    /* CONTROLS (SEARCH & CATEGORIES) */
+    .controls-container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: calc(var(--header-h) + 20px) 16px 48px;
-      flex: 1;
+      padding: calc(var(--header-h) + 16px) 16px 12px;
     }
 
-    /* CATEGORIES */
+    .search-box {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus {
+      border-color: var(--gold);
+    }
+
     .categories {
       display: flex;
       align-items: center;
@@ -145,7 +148,7 @@
       overflow-x: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      padding: 4px 0 20px;
+      padding-bottom: 4px;
     }
 
     .categories::-webkit-scrollbar {
@@ -161,12 +164,7 @@
       border-radius: 9999px;
       font-size: 13px;
       font-weight: 500;
-      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-    }
-
-    .category-btn:hover {
-      color: var(--white);
-      border-color: #3e3e3e;
+      transition: all 0.2s;
     }
 
     .category-btn.active {
@@ -174,6 +172,15 @@
       color: #0B0B0B;
       border-color: var(--gold);
       font-weight: 600;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+      flex: 1;
     }
 
     /* WALLPAPER GRID */
@@ -225,22 +232,6 @@
       transform: scale(1.03);
     }
 
-    .card-label {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(11, 11, 11, 0.78);
-      color: var(--white);
-      font-size: 11px;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      pointer-events: none;
-    }
-
     .empty-message {
       grid-column: 1 / -1;
       text-align: center;
@@ -249,159 +240,32 @@
       font-size: 15px;
     }
 
-    /* UPLOAD SECTION */
-    .upload-section {
-      margin-top: 56px;
-      padding: 28px 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-    }
-
-    @media (min-width: 600px) {
-      .upload-section {
-        padding: 32px 28px;
-      }
-    }
-
-    @media (min-width: 950px) {
-      .upload-section {
-        max-width: 680px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
-    .upload-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-
-    .upload-subtitle {
-      font-size: 14px;
-      color: var(--gray);
-      margin-bottom: 22px;
-    }
-
-    .upload-form {
+    /* LOAD MORE */
+    .load-more-container {
       display: flex;
-      flex-direction: column;
-      gap: 18px;
+      justify-content: center;
+      margin-top: 40px;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-label {
-      font-size: 12px;
+    .load-more-btn {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 12px 32px;
+      border-radius: 8px;
       font-weight: 600;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .file-input-wrapper {
-      position: relative;
-    }
-
-    .file-input {
-      width: 100%;
-      padding: 14px;
-      background: #111111;
-      border: 1px dashed #3a3a3a;
-      border-radius: 8px;
-      color: var(--gray);
-      font-size: 13px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .file-input:focus, .file-input:hover {
-      border-color: var(--gold);
-    }
-
-    .file-preview-wrap {
-      display: none;
-      margin-top: 10px;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .file-preview-img {
-      width: 72px;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-    }
-
-    .file-preview-name {
-      font-size: 12px;
-      color: var(--gray);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 240px;
-    }
-
-    .form-input, .form-select {
-      width: 100%;
-      background: #111111;
-      color: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
       font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
-    .form-input:focus, .form-select:focus {
-      border-color: var(--gold);
-    }
-
-    .form-input::placeholder {
-      color: #666;
-    }
-
-    .upload-error {
-      display: none;
-      color: #ff6b6b;
-      font-size: 13px;
-      background: rgba(255, 107, 107, 0.1);
-      border: 1px solid rgba(255, 107, 107, 0.3);
-      padding: 10px 14px;
-      border-radius: 8px;
-    }
-
-    .upload-btn {
+    .load-more-btn:hover {
       background: var(--gold);
       color: #0B0B0B;
-      border: none;
-      padding: 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: background-color 0.2s, transform 0.1s;
     }
 
-    .upload-btn:hover {
-      background: var(--gold-hover);
-    }
-
-    .upload-btn:active {
-      transform: scale(0.99);
-    }
-
-    .upload-note {
-      font-size: 12px;
-      color: var(--gray);
-      line-height: 1.5;
+    .load-more-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     /* PREVIEW OVERLAY */
@@ -422,6 +286,7 @@
     }
 
     .preview-modal {
+      position: relative;
       width: 100%;
       max-width: 440px;
       margin: auto;
@@ -434,7 +299,7 @@
     .preview-media-container {
       position: relative;
       width: 100%;
-      height: min(65vh, 620px);
+      height: min(62vh, 600px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -474,13 +339,8 @@
       border-color: var(--gold);
     }
 
-    .preview-arrow-prev {
-      left: 6px;
-    }
-
-    .preview-arrow-next {
-      right: 6px;
-    }
+    .preview-arrow-prev { left: 6px; }
+    .preview-arrow-next { right: 6px; }
 
     .preview-meta {
       margin-top: 14px;
@@ -504,18 +364,18 @@
 
     .preview-actions {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
       margin-top: 16px;
     }
 
-    .preview-download-btn, .preview-close-btn {
+    .preview-download-btn, .preview-report-btn {
       flex: 1;
-      padding: 13px 16px;
+      padding: 13px;
       border-radius: 8px;
       font-size: 14px;
       font-weight: 600;
-      transition: background-color 0.2s, transform 0.1s;
+      transition: all 0.2s;
     }
 
     .preview-download-btn {
@@ -523,28 +383,85 @@
       color: #0B0B0B;
       border: none;
     }
+    .preview-download-btn:hover { background: var(--gold-hover); }
 
-    .preview-download-btn:hover {
-      background: var(--gold-hover);
+    .preview-report-btn {
+      background: var(--card);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 107, 107, 0.3);
     }
+    .preview-report-btn:hover { background: rgba(255, 107, 107, 0.1); }
 
     .preview-close-btn {
+      width: 100%;
+      margin-top: 10px;
       background: var(--card);
       color: var(--white);
       border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
     }
-
-    .preview-close-btn:hover {
-      background: #252525;
-    }
+    .preview-close-btn:hover { background: #252525; }
 
     .preview-help {
-      margin-top: 14px;
+      margin-top: 12px;
       color: var(--gray);
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1.5;
-      max-width: 380px;
     }
+
+    /* REPORT OVERLAY */
+    .report-modal {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 11, 11, 0.96);
+      border-radius: var(--radius);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      z-index: 15;
+      text-align: center;
+    }
+    .report-modal.show { display: flex; }
+    .report-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    .report-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    .report-option-btn {
+      background: var(--card);
+      color: var(--white);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .report-option-btn:hover {
+      border-color: var(--gold);
+      background: #252525;
+    }
+    .report-cancel-btn {
+      background: transparent;
+      color: var(--gray);
+      border: none;
+      font-size: 13px;
+      padding: 8px;
+    }
+    .report-cancel-btn:hover { color: var(--white); }
 
     /* TOAST */
     .toast {
@@ -602,60 +519,24 @@
 <body>
   <header class="header">
     <div class="header-inner">
-      <a href="#" class="brand" aria-label="Apna Wallpaper Home">
-        <img src="/apna-wallpaper-logo-512.png" alt="Apna Wallpaper logo" width="34" height="34" style="border-radius: 8px; display: block;" />
+      <a href="/index.html" class="brand" aria-label="Apna Wallpaper Home">
+        <img src="/apna-wallpaper-logo-512.png" alt="Apna Wallpaper logo" width="34" height="34" class="brand-logo" />
         <span class="brand-name">Apna Wallpaper</span>
       </a>
-      <button class="header-upload-btn" id="scroll-to-upload">Upload</button>
+      <a href="/upload.html" class="header-upload-btn">Upload</a>
     </div>
   </header>
 
+  <div class="controls-container">
+    <input type="text" id="search-box" class="search-box" placeholder="Search wallpapers by title or category..." aria-label="Search wallpapers">
+    <nav class="categories" id="categories-container" aria-label="Wallpaper categories"></nav>
+  </div>
+
   <main class="container">
-    <nav class="categories" aria-label="Wallpaper categories">
-      <button class="category-btn active" data-category="All">All</button>
-      <button class="category-btn" data-category="Islamic">Islamic</button>
-      <button class="category-btn" data-category="Nature">Nature</button>
-      <button class="category-btn" data-category="Aesthetic">Aesthetic</button>
-    </nav>
-
     <section class="wallpaper-grid" id="wallpaper-grid" aria-live="polite"></section>
-
-    <section class="upload-section" id="upload-section">
-      <h2 class="upload-title">Upload Your Wallpaper</h2>
-      <p class="upload-subtitle">Share your wallpaper with everyone on this page.</p>
-
-      <div class="upload-error" id="upload-error" role="alert"></div>
-
-      <form class="upload-form" id="upload-form" novalidate>
-        <div class="form-group">
-          <label class="form-label" for="wallpaper-file">Choose Image</label>
-          <div class="file-input-wrapper">
-            <input type="file" id="wallpaper-file" class="file-input" accept="image/*" required>
-          </div>
-          <div class="file-preview-wrap" id="file-preview-wrap">
-            <img id="file-preview-img" class="file-preview-img" alt="Uploaded preview">
-            <span id="file-preview-name" class="file-preview-name"></span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="uploader-name">Your Name (Optional)</label>
-          <input type="text" id="uploader-name" class="form-input" placeholder="Anonymous" maxlength="40">
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="upload-category">Category</label>
-          <select id="upload-category" class="form-select">
-            <option value="Islamic">Islamic</option>
-            <option value="Nature">Nature</option>
-            <option value="Aesthetic">Aesthetic</option>
-          </select>
-        </div>
-
-        <button type="submit" id="submit-btn" class="upload-btn">Upload Wallpaper</button>
-        <p class="upload-note">Your wallpaper will be visible to everyone on this site.</p>
-      </form>
-    </section>
+    <div class="load-more-container" id="load-more-container" style="display: none;">
+      <button class="load-more-btn" id="load-more-btn">Load more</button>
+    </div>
   </main>
 
   <div class="preview-overlay" id="preview-overlay" role="dialog" aria-modal="true" aria-label="Wallpaper Preview">
@@ -673,10 +554,21 @@
 
       <div class="preview-actions">
         <button class="preview-download-btn" id="preview-download">Download</button>
-        <button class="preview-close-btn" id="preview-close">Close</button>
+        <button class="preview-report-btn" id="preview-report">Report</button>
       </div>
-
+      <button class="preview-close-btn" id="close-preview">Close</button>
       <p class="preview-help">How to set on phone: open the image, tap Save, then set it as wallpaper from your phone settings.</p>
+
+      <div class="report-modal" id="report-modal">
+        <h3 class="report-title">Report Wallpaper</h3>
+        <div class="report-options">
+          <button class="report-option-btn" data-reason="Wrong image">Wrong image</button>
+          <button class="report-option-btn" data-reason="Not a wallpaper">Not a wallpaper</button>
+          <button class="report-option-btn" data-reason="Inappropriate content">Inappropriate content</button>
+          <button class="report-option-btn" data-reason="Other">Other</button>
+        </div>
+        <button class="report-cancel-btn" id="report-cancel">Cancel</button>
+      </div>
     </div>
   </div>
 
@@ -691,44 +583,57 @@
 
   <script>
     // =========================================================================
-    // 1. SUPABASE CLIENT INITIALIZATION
+    // 1. SUPABASE CLIENT & CATEGORIES ARRAY
     // =========================================================================
     const supabaseUrl = 'https://klhysrbbbvlmzwdycuky.supabase.co';
     const supabaseKey = 'sb_publishable_AoXsUMgxJi8a98qlL-N-NA_eeQTcOI3';
     const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    // =========================================================================
-    // 2. APPLICATION STATE
-    // =========================================================================
-    let activeCategory = "All";
-    let previewIndex = 0;
-    let selectedFileObjectUrl = null;
-    let wallpapers = [];
+    const CATEGORIES = ["All", "Islamic", "Nature", "Aesthetic", "Minimal", "Abstract", "Dark", "Cars", "Space", "Flowers"];
 
-    function getFilteredWallpapers() {
-      if (activeCategory === "All") return wallpapers;
-      return wallpapers.filter(item => item.category === activeCategory);
+    let activeCategory = "All";
+    let searchQuery = "";
+    let previewIndex = 0;
+    let wallpapers = [];
+    let displayedCount = 60;
+    const PAGE_SIZE = 60;
+
+    // =========================================================================
+    // 2. RENDER CATEGORIES
+    // =========================================================================
+    const categoriesContainer = document.getElementById("categories-container");
+    function renderCategories() {
+      categoriesContainer.innerHTML = "";
+      CATEGORIES.forEach(cat => {
+        const btn = document.createElement("button");
+        btn.className = "category-btn" + (cat === activeCategory ? " active" : "");
+        btn.textContent = cat;
+        btn.addEventListener("click", () => {
+          activeCategory = cat;
+          displayedCount = PAGE_SIZE;
+          renderCategories();
+          renderWallpapers();
+        });
+        categoriesContainer.appendChild(btn);
+      });
     }
 
     // =========================================================================
-    // 3. LOAD WALLPAPERS FROM DATABASE
+    // 3. LOAD WALLPAPERS
     // =========================================================================
     const wallpaperGrid = document.getElementById("wallpaper-grid");
-    const uploadError = document.getElementById("upload-error");
+    const loadMoreContainer = document.getElementById("load-more-container");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+    const searchBox = document.getElementById("search-box");
 
-    function showUploadError(msg) {
-      uploadError.textContent = msg;
-      uploadError.style.display = "block";
-    }
-
-    function clearUploadError() {
-      uploadError.textContent = "";
-      uploadError.style.display = "none";
-    }
+    searchBox.addEventListener("input", (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      displayedCount = PAGE_SIZE;
+      renderWallpapers();
+    });
 
     async function loadWallpapers() {
       try {
-        clearUploadError();
         const { data, error } = await supabaseClient
           .from('wallpapers')
           .select('*')
@@ -744,25 +649,41 @@
         }));
       } catch (err) {
         console.error("Error loading wallpapers:", err);
-        showUploadError("Failed to load wallpapers from database. Please refresh the page.");
         wallpapers = [];
       }
       renderWallpapers();
     }
 
+    function getFilteredWallpapers() {
+      let result = wallpapers;
+      if (activeCategory !== "All") {
+        result = result.filter(item => item.category === activeCategory);
+      }
+      if (searchQuery) {
+        result = result.filter(item => 
+          item.title.toLowerCase().includes(searchQuery) || 
+          item.category.toLowerCase().includes(searchQuery)
+        );
+      }
+      return result;
+    }
+
     function renderWallpapers() {
       wallpaperGrid.innerHTML = "";
-      const currentList = getFilteredWallpapers();
+      const filtered = getFilteredWallpapers();
 
-      if (currentList.length === 0) {
+      if (filtered.length === 0) {
         const empty = document.createElement("div");
         empty.className = "empty-message";
-        empty.textContent = "No wallpapers found in this category.";
+        empty.textContent = searchQuery ? "No wallpapers found for this search." : "No wallpapers found in this category.";
         wallpaperGrid.appendChild(empty);
+        loadMoreContainer.style.display = "none";
         return;
       }
 
-      currentList.forEach(wallpaper => {
+      const paginatedList = filtered.slice(0, displayedCount);
+
+      paginatedList.forEach(wallpaper => {
         const card = document.createElement("article");
         card.className = "wallpaper-card";
         card.tabIndex = 0;
@@ -778,70 +699,61 @@
           this.style.opacity = "0.3";
         };
 
-        const label = document.createElement("span");
-        label.className = "card-label";
-        label.textContent = wallpaper.category;
-
         card.appendChild(img);
-        card.appendChild(label);
-
-        card.addEventListener("click", () => {
-          openPreviewById(wallpaper.id);
-        });
-
+        card.addEventListener("click", () => openPreviewById(wallpaper.id));
         card.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             openPreviewById(wallpaper.id);
           }
         });
-
         wallpaperGrid.appendChild(card);
       });
+
+      if (filtered.length > displayedCount) {
+        loadMoreContainer.style.display = "flex";
+      } else {
+        loadMoreContainer.style.display = "none";
+      }
     }
 
-    // =========================================================================
-    // 4. CATEGORY FILTER BUTTONS
-    // =========================================================================
-    const categoryButtons = document.querySelectorAll(".category-btn");
-
-    categoryButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        categoryButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-        activeCategory = button.getAttribute("data-category");
-        renderWallpapers();
-      });
+    loadMoreBtn.addEventListener("click", () => {
+      displayedCount += PAGE_SIZE;
+      renderWallpapers();
     });
 
-    function resetCategoryFilter() {
-      activeCategory = "All";
-      categoryButtons.forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-category") === "All");
-      });
-    }
-
     // =========================================================================
-    // 5. PREVIEW MODAL & NAVIGATION
+    // 4. PREVIEW MODAL & NAVIGATION
     // =========================================================================
     const previewOverlay = document.getElementById("preview-overlay");
-    const previewModal = document.getElementById("preview-modal");
     const previewImage = document.getElementById("preview-image");
     const previewCategory = document.getElementById("preview-category");
     const previewTitle = document.getElementById("preview-title");
-    const previewCloseBtn = document.getElementById("preview-close");
+    const previewCloseBtn = document.getElementById("close-preview");
     const previewPrevBtn = document.getElementById("preview-prev");
     const previewNextBtn = document.getElementById("preview-next");
     const previewDownloadBtn = document.getElementById("preview-download");
+    const previewReportBtn = document.getElementById("preview-report");
+    const reportModal = document.getElementById("report-modal");
+    const reportCancelBtn = document.getElementById("report-cancel");
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
 
     function openPreviewById(id) {
       const currentList = getFilteredWallpapers();
-      const index = currentList.findIndex(item => item.id === id);
-      if (index === -1) return;
-      previewIndex = index;
+      previewIndex = currentList.findIndex(item => item.id === id);
+      if (previewIndex === -1) return;
       updatePreviewContent();
       previewOverlay.classList.add("show");
       document.body.style.overflow = "hidden";
+      reportModal.classList.remove("show");
     }
 
     function updatePreviewContent() {
@@ -856,6 +768,7 @@
 
     function closePreview() {
       previewOverlay.classList.remove("show");
+      reportModal.classList.remove("show");
       document.body.style.overflow = "";
     }
 
@@ -864,6 +777,7 @@
       if (!currentList.length) return;
       previewIndex = (previewIndex + direction + currentList.length) % currentList.length;
       updatePreviewContent();
+      reportModal.classList.remove("show");
     }
 
     previewCloseBtn.addEventListener("click", closePreview);
@@ -879,7 +793,11 @@
     document.addEventListener("keydown", (e) => {
       if (!previewOverlay.classList.contains("show")) return;
       if (e.key === "Escape") {
-        closePreview();
+        if (reportModal.classList.contains("show")) {
+          reportModal.classList.remove("show");
+        } else {
+          closePreview();
+        }
       } else if (e.key === "ArrowLeft") {
         navigatePreview(-1);
       } else if (e.key === "ArrowRight") {
@@ -887,6 +805,7 @@
       }
     });
 
+    // Touch swipe handling
     let touchStartX = 0;
     let touchStartY = 0;
 
@@ -911,7 +830,7 @@
     }, { passive: true });
 
     // =========================================================================
-    // 6. DOWNLOAD HANDLER
+    // 5. DOWNLOAD HANDLER
     // =========================================================================
     previewDownloadBtn.addEventListener("click", async () => {
       const currentList = getFilteredWallpapers();
@@ -945,157 +864,46 @@
     });
 
     // =========================================================================
-    // 7. SMOOTH SCROLL TO UPLOAD
+    // 6. REPORT HANDLER
     // =========================================================================
-    document.getElementById("scroll-to-upload").addEventListener("click", () => {
-      const uploadSection = document.getElementById("upload-section");
-      if (uploadSection) {
-        uploadSection.scrollIntoView({ behavior: "smooth" });
-      }
+    previewReportBtn.addEventListener("click", () => {
+      reportModal.classList.add("show");
     });
 
-    // =========================================================================
-    // 8. UPLOAD FORM & SUPABASE STORAGE / DATABASE INTEGRATION
-    // =========================================================================
-    const uploadForm = document.getElementById("upload-form");
-    const fileInput = document.getElementById("wallpaper-file");
-    const previewWrap = document.getElementById("file-preview-wrap");
-    const previewImg = document.getElementById("file-preview-img");
-    const previewName = document.getElementById("file-preview-name");
-    const uploaderNameInput = document.getElementById("uploader-name");
-    const uploadCategorySelect = document.getElementById("upload-category");
-    const submitBtn = document.getElementById("submit-btn");
-    const toast = document.getElementById("toast");
-
-    function showToast() {
-      toast.classList.add("show");
-      setTimeout(() => {
-        toast.classList.remove("show");
-      }, 3000);
-    }
-
-    fileInput.addEventListener("change", () => {
-      clearUploadError();
-      const file = fileInput.files && fileInput.files[0];
-
-      if (selectedFileObjectUrl) {
-        URL.revokeObjectURL(selectedFileObjectUrl);
-        selectedFileObjectUrl = null;
-      }
-      previewWrap.style.display = "none";
-
-      if (!file) return;
-
-      if (!file.type.startsWith("image/")) {
-        showUploadError("Please select a valid image file (JPEG, PNG, WEBP).");
-        fileInput.value = "";
-        return;
-      }
-
-      if (file.size > 15 * 1024 * 1024) {
-        showUploadError("Image file size exceeds the 15 MB limit. Please select a smaller image.");
-        fileInput.value = "";
-        return;
-      }
-
-      selectedFileObjectUrl = URL.createObjectURL(file);
-      previewImg.src = selectedFileObjectUrl;
-      previewName.textContent = file.name;
-      previewWrap.style.display = "flex";
+    reportCancelBtn.addEventListener("click", () => {
+      reportModal.classList.remove("show");
     });
 
-    uploadForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      clearUploadError();
+    document.querySelectorAll(".report-option-btn").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const reason = btn.getAttribute("data-reason");
+        const currentList = getFilteredWallpapers();
+        const current = currentList[previewIndex];
+        if (!current) return;
 
-      const file = fileInput.files && fileInput.files[0];
-      if (!file) {
-        showUploadError("Please select an image file to upload.");
-        return;
-      }
+        try {
+          const { error } = await supabaseClient
+            .from('reports')
+            .insert([{
+              wallpaper_id: current.id,
+              reason: reason
+            }]);
 
-      if (!file.type.startsWith("image/")) {
-        showUploadError("Please select a valid image file.");
-        return;
-      }
+          if (error) throw error;
 
-      if (file.size > 15 * 1024 * 1024) {
-        showUploadError("Image file size exceeds the 15 MB limit.");
-        return;
-      }
-
-      const rawName = uploaderNameInput.value.trim();
-      const uploaderName = rawName ? rawName : "Anonymous";
-      const chosenCategory = uploadCategorySelect.value;
-      const title = "Uploaded by " + uploaderName;
-
-      // Disable button and show uploading state
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Uploading...";
-
-      try {
-        const fileExt = file.name.split('.').pop() || 'jpg';
-        const fileName = `${Date.now()}-${Math.floor(Math.random() * 1000000)}.${fileExt}`;
-
-        // Upload to Supabase Storage bucket 'wallpapers'
-        const { data: uploadData, error: uploadErrorObj } = await supabaseClient.storage
-          .from("wallpapers")
-          .upload(fileName, file);
-
-        if (uploadErrorObj) throw uploadErrorObj;
-
-        // Get public URL
-        const { data: publicUrlData } = supabaseClient.storage
-          .from("wallpapers")
-          .getPublicUrl(fileName);
-
-        const publicUrl = publicUrlData.publicUrl;
-
-        // Insert row into 'wallpapers' table
-        const { error: insertError } = await supabaseClient
-          .from('wallpapers')
-          .insert([{
-            title: title,
-            category: chosenCategory,
-            image_url: publicUrl,
-            uploaded_by: uploaderName
-          }]);
-
-        if (insertError) throw insertError;
-
-        // Reload wallpapers from database
-        await loadWallpapers();
-
-        // Reset category filter to All
-        resetCategoryFilter();
-        renderWallpapers();
-
-        // Reset form
-        uploadForm.reset();
-        previewWrap.style.display = "none";
-        if (selectedFileObjectUrl) {
-          selectedFileObjectUrl = null;
+          reportModal.classList.remove("show");
+          showToast("Thank you, your report was sent.");
+        } catch (err) {
+          console.error("Report error:", err);
+          showToast("Failed to send report. Please try again.");
         }
-
-        // Scroll to grid
-        const gridElement = document.getElementById("wallpaper-grid");
-        if (gridElement) {
-          gridElement.scrollIntoView({ behavior: "smooth" });
-        }
-
-        showToast();
-      } catch (err) {
-        console.error("Upload error:", err);
-        showUploadError("Failed to upload wallpaper. Please try again.");
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Upload Wallpaper";
-      }
+      });
     });
 
     // =========================================================================
-    // 9. INITIAL RENDER
+    // 7. INITIALIZE
     // =========================================================================
+    renderCategories();
     loadWallpapers();
   </script>
 </body>
