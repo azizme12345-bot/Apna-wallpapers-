@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apna Wallpaper - Mobile Wallpapers</title>
-  <meta name="description" content="Discover premium mobile phone wallpapers. Explore Islamic, Nature, Aesthetic and more 9:16 wallpapers.">
+  <meta name="description" content="Discover thoughtfully selected backgrounds that bring a touch of beauty and personality to your screen.">
   <meta name="google-site-verification" content="e2RrqWDlKxHOPt0hT0SbW2dvhjsUgITfsuQwy6ZZhjY" />
   <link rel="canonical" href="https://apna-wallpapers-a3pf.vercel.app/" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Apna Wallpaper - Mobile Wallpapers">
-  <meta property="og:description" content="Discover premium mobile phone wallpapers. Explore 9:16 wallpapers for your device.">
+  <meta property="og:description" content="Discover thoughtfully selected backgrounds that bring a touch of beauty and personality to your screen.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://apna-wallpapers-a3pf.vercel.app/" />
   <meta property="og:image" content="https://apna-wallpapers-a3pf.vercel.app/apna-wallpaper-logo-512.png" />
@@ -18,19 +18,20 @@
   <link rel="apple-touch-icon" href="/apna-wallpaper-logo-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
       --bg: #0B0B0B;
-      --card: #1A1A1A;
-      --border: #2A2A2A;
+      --card: #141414;
+      --border: #222222;
       --gold: #C9A227;
       --gold-hover: #b8921e;
-      --white: #FFFFFF;
+      --cream: #F3EBD8;
       --gray: #A0A0A0;
-      --radius: 12px;
-      --header-h: 66px;
+      --dim: #666666;
+      --radius: 10px;
+      --header-h: 64px;
     }
 
     * {
@@ -39,14 +40,22 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background-color: var(--bg);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Playfair Display', serif;
     }
 
     button, input, select {
@@ -65,139 +74,240 @@
       width: 100%;
       height: var(--header-h);
       z-index: 100;
-      background: rgba(11, 11, 11, 0.95);
+      background: #0B0B0B;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
     }
 
     .header-inner {
-      max-width: 1200px;
+      max-width: 1100px;
       height: 100%;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
-      color: var(--white);
-    }
-
-    .brand-logo {
-      display: block;
-      border-radius: 8px;
+      color: var(--gold);
     }
 
     .brand-name {
-      font-size: 17px;
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
       font-weight: 700;
       letter-spacing: -0.2px;
     }
 
-    .header-upload-btn {
-      background: var(--gold);
-      color: #0B0B0B;
-      border: none;
-      padding: 9px 20px;
-      border-radius: 8px;
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-gold-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 8px 16px;
+      border-radius: var(--radius);
       font-weight: 600;
       font-size: 13px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gold-outline:hover {
+      background: rgba(201, 162, 39, 0.12);
+    }
+
+    .btn-gold-filled {
+      background: var(--gold);
+      color: #0B0B0B;
+      border: 1px solid var(--gold);
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 14px;
       text-decoration: none;
       transition: background-color 0.2s ease, transform 0.1s ease;
     }
 
-    .header-upload-btn:hover {
+    .btn-gold-filled:hover {
       background: var(--gold-hover);
+      border-color: var(--gold-hover);
     }
 
-    /* CONTROLS (SEARCH & CATEGORIES) */
-    .controls-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: calc(var(--header-h) + 16px) 16px 12px;
-    }
-
-    .search-box {
-      width: 100%;
-      background: var(--card);
+    .menu-btn {
+      background: transparent;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 16px;
-      color: var(--white);
-      font-size: 14px;
-      outline: none;
-      margin-bottom: 16px;
+      border-radius: var(--radius);
+      width: 38px;
+      height: 38px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
       transition: border-color 0.2s;
     }
 
-    .search-box:focus {
+    .menu-btn:hover {
       border-color: var(--gold);
     }
 
-    .categories {
+    .menu-btn span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background-color: var(--cream);
+      border-radius: 2px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(var(--header-h) + 4px);
+      right: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 180px;
+      display: none;
+      flex-direction: column;
+      padding: 6px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+      z-index: 120;
+    }
+
+    .dropdown-menu.show {
+      display: flex;
+    }
+
+    .dropdown-item {
+      color: var(--cream);
+      text-decoration: none;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(201, 162, 39, 0.12);
+      color: var(--gold);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: calc(var(--header-h) + 56px) 20px 64px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 45%, rgba(201, 162, 39, 0.14) 0%, rgba(11, 11, 11, 0) 65%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 6vw, 56px);
+      line-height: 1.12;
+      color: var(--cream);
+      font-weight: 700;
+      max-width: 560px;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      padding-bottom: 4px;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .categories::-webkit-scrollbar {
-      display: none;
+    .hero-actions .btn-gold-outline {
+      padding: 12px 24px;
+      font-size: 14px;
     }
 
-    .category-btn {
-      flex-shrink: 0;
-      background: var(--card);
-      color: var(--gray);
-      border: 1px solid var(--border);
-      padding: 8px 18px;
-      border-radius: 9999px;
-      font-size: 13px;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-
-    .category-btn.active {
-      background: var(--gold);
-      color: #0B0B0B;
-      border-color: var(--gold);
-      font-weight: 600;
-    }
-
-    /* MAIN CONTAINER */
-    .container {
+    /* MAIN CONTENT */
+    .main-content {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 16px 48px;
+      padding: 0 20px 64px;
       flex: 1;
     }
 
-    /* WALLPAPER GRID */
+    .status-message {
+      text-align: center;
+      color: var(--gray);
+      font-size: 15px;
+      padding: 48px 20px;
+    }
+
+    .status-message.error {
+      color: #ff6b6b;
+    }
+
+    /* CATEGORY SECTIONS */
+    .category-section {
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .category-heading {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .category-underline {
+      width: 42px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 22px;
+      border-radius: 2px;
+    }
+
     .wallpaper-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: 640px) {
       .wallpaper-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
+        gap: 18px;
       }
     }
 
-    @media (min-width: 950px) {
+    @media (min-width: 960px) {
       .wallpaper-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 20px;
@@ -216,6 +326,7 @@
       transition: border-color 0.2s ease;
     }
 
+    .wallpaper-card:hover,
     .wallpaper-card:focus-visible {
       border-color: var(--gold);
     }
@@ -232,40 +343,32 @@
       transform: scale(1.03);
     }
 
-    .empty-message {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 60px 16px;
+    .empty-category {
       color: var(--gray);
-      font-size: 15px;
+      font-size: 14px;
+      padding: 12px 0 20px;
     }
 
-    /* LOAD MORE */
-    .load-more-container {
+    .show-more-wrap {
       display: flex;
       justify-content: center;
-      margin-top: 40px;
+      margin-top: 24px;
     }
 
-    .load-more-btn {
+    .show-more-btn {
       background: transparent;
       color: var(--gold);
       border: 1px solid var(--gold);
-      padding: 12px 32px;
-      border-radius: 8px;
+      padding: 10px 28px;
+      border-radius: var(--radius);
+      font-size: 13px;
       font-weight: 600;
-      font-size: 14px;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
 
-    .load-more-btn:hover {
+    .show-more-btn:hover {
       background: var(--gold);
       color: #0B0B0B;
-    }
-
-    .load-more-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
     }
 
     /* PREVIEW OVERLAY */
@@ -288,7 +391,7 @@
     .preview-modal {
       position: relative;
       width: 100%;
-      max-width: 440px;
+      max-width: 420px;
       margin: auto;
       text-align: center;
       display: flex;
@@ -299,7 +402,7 @@
     .preview-media-container {
       position: relative;
       width: 100%;
-      height: min(62vh, 600px);
+      height: min(62vh, 580px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -308,11 +411,11 @@
     .preview-image {
       max-width: 100%;
       max-height: 100%;
-      height: 100%;
-      width: auto;
-      object-fit: contain;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
       border-radius: var(--radius);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
       user-select: none;
     }
 
@@ -324,23 +427,24 @@
       height: 38px;
       border-radius: 50%;
       border: 1px solid var(--border);
-      background: rgba(26, 26, 26, 0.85);
-      color: var(--white);
-      font-size: 22px;
+      background: rgba(20, 20, 20, 0.85);
+      color: var(--cream);
+      font-size: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.2s, border-color 0.2s;
+      transition: all 0.2s;
       z-index: 5;
     }
 
     .preview-arrow:hover {
       background: #252525;
       border-color: var(--gold);
+      color: var(--gold);
     }
 
-    .preview-arrow-prev { left: 6px; }
-    .preview-arrow-next { right: 6px; }
+    .preview-arrow-prev { left: 8px; }
+    .preview-arrow-next { right: 8px; }
 
     .preview-meta {
       margin-top: 14px;
@@ -349,17 +453,17 @@
 
     .preview-category {
       color: var(--gold);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       margin-bottom: 4px;
     }
 
     .preview-title {
-      color: var(--white);
-      font-size: 18px;
-      font-weight: 600;
+      color: var(--cream);
+      font-size: 19px;
+      font-weight: 700;
     }
 
     .preview-actions {
@@ -369,41 +473,26 @@
       margin-top: 16px;
     }
 
-    .preview-download-btn, .preview-report-btn {
+    .preview-actions .btn-gold-filled,
+    .preview-actions .btn-gold-outline,
+    .preview-actions .btn-close {
       flex: 1;
-      padding: 13px;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 11px 10px;
+      font-size: 13px;
+      border-radius: var(--radius);
       font-weight: 600;
-      transition: all 0.2s;
     }
 
-    .preview-download-btn {
-      background: var(--gold);
-      color: #0B0B0B;
-      border: none;
-    }
-    .preview-download-btn:hover { background: var(--gold-hover); }
-
-    .preview-report-btn {
+    .btn-close {
       background: var(--card);
-      color: #ff6b6b;
-      border: 1px solid rgba(255, 107, 107, 0.3);
-    }
-    .preview-report-btn:hover { background: rgba(255, 107, 107, 0.1); }
-
-    .preview-close-btn {
-      width: 100%;
-      margin-top: 10px;
-      background: var(--card);
-      color: var(--white);
+      color: var(--cream);
       border: 1px solid var(--border);
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
+      transition: background-color 0.2s;
     }
-    .preview-close-btn:hover { background: #252525; }
+
+    .btn-close:hover {
+      background: #222222;
+    }
 
     .preview-help {
       margin-top: 12px;
@@ -412,27 +501,32 @@
       line-height: 1.5;
     }
 
-    /* REPORT OVERLAY */
+    /* REPORT MODAL */
     .report-modal {
       position: absolute;
       inset: 0;
       background: rgba(11, 11, 11, 0.96);
       border-radius: var(--radius);
+      border: 1px solid var(--border);
       display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 24px;
       z-index: 15;
-      text-align: center;
     }
-    .report-modal.show { display: flex; }
+
+    .report-modal.show {
+      display: flex;
+    }
+
     .report-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
+      color: var(--cream);
       margin-bottom: 16px;
-      color: var(--white);
     }
+
     .report-options {
       display: flex;
       flex-direction: column;
@@ -440,28 +534,34 @@
       width: 100%;
       margin-bottom: 16px;
     }
+
     .report-option-btn {
       background: var(--card);
-      color: var(--white);
+      color: var(--cream);
       border: 1px solid var(--border);
       padding: 12px;
-      border-radius: 8px;
+      border-radius: var(--radius);
       font-size: 13px;
       font-weight: 500;
       transition: all 0.2s;
     }
+
     .report-option-btn:hover {
       border-color: var(--gold);
-      background: #252525;
+      color: var(--gold);
     }
+
     .report-cancel-btn {
       background: transparent;
       color: var(--gray);
       border: none;
       font-size: 13px;
-      padding: 8px;
+      padding: 8px 16px;
     }
-    .report-cancel-btn:hover { color: var(--white); }
+
+    .report-cancel-btn:hover {
+      color: var(--cream);
+    }
 
     /* TOAST */
     .toast {
@@ -470,7 +570,7 @@
       left: 50%;
       transform: translateX(-50%) translateY(40px);
       background: var(--card);
-      color: var(--white);
+      color: var(--cream);
       border: 1px solid var(--gold);
       padding: 12px 24px;
       border-radius: 30px;
@@ -496,23 +596,52 @@
     }
 
     .footer-inner {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 24px 16px;
+      padding: 36px 20px 28px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--gray);
-      font-size: 12px;
-      gap: 12px;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    @media (max-width: 480px) {
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-      }
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .footer-brand-sub {
+      color: var(--gray);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--dim);
+      font-size: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
     }
   </style>
 </head>
@@ -520,23 +649,41 @@
   <header class="header">
     <div class="header-inner">
       <a href="/index.html" class="brand" aria-label="Apna Wallpaper Home">
-        <img src="/apna-wallpaper-logo-512.png" alt="Apna Wallpaper logo" width="34" height="34" class="brand-logo" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#C9A227"/>
+          <path d="M18.5 3.5L19.2 5.3L21 6L19.2 6.7L18.5 8.5L17.8 6.7L16 6L17.8 5.3L18.5 3.5Z" fill="#C9A227"/>
+        </svg>
         <span class="brand-name">Apna Wallpaper</span>
       </a>
-      <a href="/upload.html" class="header-upload-btn">Upload</a>
+      <div class="header-actions">
+        <a href="/upload.html" class="btn-gold-outline">Upload</a>
+        <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="dropdown-menu" id="dropdown-menu" aria-label="Navigation menu">
+        <a href="/index.html" class="dropdown-item">Home</a>
+        <a href="#categories-start" class="dropdown-item">Categories</a>
+        <a href="/upload.html" class="dropdown-item">Upload</a>
+      </nav>
     </div>
   </header>
 
-  <div class="controls-container">
-    <input type="text" id="search-box" class="search-box" placeholder="Search wallpapers by title or category..." aria-label="Search wallpapers">
-    <nav class="categories" id="categories-container" aria-label="Wallpaper categories"></nav>
-  </div>
-
-  <main class="container">
-    <section class="wallpaper-grid" id="wallpaper-grid" aria-live="polite"></section>
-    <div class="load-more-container" id="load-more-container" style="display: none;">
-      <button class="load-more-btn" id="load-more-btn">Load more</button>
+  <section class="hero">
+    <div class="hero-eyebrow">A LITTLE BEAUTY FOR EVERY SCREEN</div>
+    <h1 class="hero-title">Beautiful<br>Wallpapers<br>for Your Phone</h1>
+    <p class="hero-subtitle">Discover thoughtfully selected backgrounds that bring a touch of beauty and personality to your screen.</p>
+    <div class="hero-actions">
+      <a href="#categories-start" class="btn-gold-filled">Browse Wallpapers</a>
+      <a href="/upload.html" class="btn-gold-outline">Upload Yours</a>
     </div>
+  </section>
+
+  <main class="main-content" id="categories-start">
+    <div class="status-message" id="status-message">Loading wallpapers...</div>
+    <div id="sections-container"></div>
   </main>
 
   <div class="preview-overlay" id="preview-overlay" role="dialog" aria-modal="true" aria-label="Wallpaper Preview">
@@ -553,11 +700,11 @@
       </div>
 
       <div class="preview-actions">
-        <button class="preview-download-btn" id="preview-download">Download</button>
-        <button class="preview-report-btn" id="preview-report">Report</button>
+        <button class="btn-gold-filled" id="preview-download">Download</button>
+        <button class="btn-gold-outline" id="preview-report">Report</button>
+        <button class="btn-close" id="close-preview">Close</button>
       </div>
-      <button class="preview-close-btn" id="close-preview">Close</button>
-      <p class="preview-help">How to set on phone: open the image, tap Save, then set it as wallpaper from your phone settings.</p>
+      <p class="preview-help">To set on phone: open the image, tap Save, then set it as wallpaper from your phone settings.</p>
 
       <div class="report-modal" id="report-modal">
         <h3 class="report-title">Report Wallpaper</h3>
@@ -572,67 +719,97 @@
     </div>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">Wallpaper uploaded</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <footer class="footer">
     <div class="footer-inner">
-      <span>© 2026 Apna Wallpaper</span>
-      <span>All rights reserved.</span>
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#C9A227"/>
+              <path d="M18.5 3.5L19.2 5.3L21 6L19.2 6.7L18.5 8.5L17.8 6.7L16 6L17.8 5.3L18.5 3.5Z" fill="#C9A227"/>
+            </svg>
+            <span class="brand-name">Apna Wallpaper</span>
+          </a>
+          <p class="footer-brand-sub">Beautiful Wallpapers for Your Phone</p>
+        </div>
+        <div class="footer-links">
+          <a href="/index.html">Home</a>
+          <a href="#categories-start">Categories</a>
+          <a href="/upload.html">Upload</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Apna Wallpaper. All rights reserved.</div>
     </div>
   </footer>
 
   <script>
     // =========================================================================
-    // 1. SUPABASE CLIENT & CATEGORIES ARRAY
+    // 1. SUPABASE & CATEGORIES CONFIGURATION
     // =========================================================================
     const supabaseUrl = 'https://klhysrbbbvlmzwdycuky.supabase.co';
     const supabaseKey = 'sb_publishable_AoXsUMgxJi8a98qlL-N-NA_eeQTcOI3';
     const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    const CATEGORIES = ["All", "Islamic", "Nature", "Aesthetic", "Minimal", "Abstract", "Dark", "Cars", "Space", "Flowers"];
+    const CATEGORIES = [
+      "Islamic",
+      "Nature",
+      "Aesthetic",
+      "Minimal",
+      "Abstract",
+      "Dark",
+      "Cars",
+      "Space",
+      "Flowers"
+    ];
 
-    let activeCategory = "All";
-    let searchQuery = "";
+    const PAGE_SIZE = 10;
+    const categoryCounts = {};
+    CATEGORIES.forEach(cat => { categoryCounts[cat] = PAGE_SIZE; });
+
+    let allWallpapers = [];
+    let previewList = [];
     let previewIndex = 0;
-    let wallpapers = [];
-    let displayedCount = 60;
-    const PAGE_SIZE = 60;
 
     // =========================================================================
-    // 2. RENDER CATEGORIES
+    // 2. HEADER DROPDOWN MENU
     // =========================================================================
-    const categoriesContainer = document.getElementById("categories-container");
-    function renderCategories() {
-      categoriesContainer.innerHTML = "";
-      CATEGORIES.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.className = "category-btn" + (cat === activeCategory ? " active" : "");
-        btn.textContent = cat;
-        btn.addEventListener("click", () => {
-          activeCategory = cat;
-          displayedCount = PAGE_SIZE;
-          renderCategories();
-          renderWallpapers();
-        });
-        categoriesContainer.appendChild(btn);
-      });
-    }
+    const menuBtn = document.getElementById("menu-btn");
+    const dropdownMenu = document.getElementById("dropdown-menu");
 
-    // =========================================================================
-    // 3. LOAD WALLPAPERS
-    // =========================================================================
-    const wallpaperGrid = document.getElementById("wallpaper-grid");
-    const loadMoreContainer = document.getElementById("load-more-container");
-    const loadMoreBtn = document.getElementById("load-more-btn");
-    const searchBox = document.getElementById("search-box");
-
-    searchBox.addEventListener("input", (e) => {
-      searchQuery = e.target.value.trim().toLowerCase();
-      displayedCount = PAGE_SIZE;
-      renderWallpapers();
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = dropdownMenu.classList.toggle("show");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
     });
 
+    dropdownMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        dropdownMenu.classList.remove("show");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!dropdownMenu.contains(e.target) && e.target !== menuBtn) {
+        dropdownMenu.classList.remove("show");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // =========================================================================
+    // 3. LOAD & RENDER CATEGORY SECTIONS
+    // =========================================================================
+    const statusMessage = document.getElementById("status-message");
+    const sectionsContainer = document.getElementById("sections-container");
+
     async function loadWallpapers() {
+      statusMessage.style.display = "block";
+      statusMessage.className = "status-message";
+      statusMessage.textContent = "Loading wallpapers...";
+      sectionsContainer.innerHTML = "";
+
       try {
         const { data, error } = await supabaseClient
           .from('wallpapers')
@@ -641,89 +818,107 @@
 
         if (error) throw error;
 
-        wallpapers = (data || []).map(row => ({
+        allWallpapers = (data || []).map(row => ({
           id: row.id,
           title: row.title,
           category: row.category,
           image: row.image_url
         }));
+
+        statusMessage.style.display = "none";
+        renderSections();
       } catch (err) {
         console.error("Error loading wallpapers:", err);
-        wallpapers = [];
+        statusMessage.className = "status-message error";
+        statusMessage.textContent = "Could not load wallpapers. Please refresh the page.";
       }
-      renderWallpapers();
     }
 
-    function getFilteredWallpapers() {
-      let result = wallpapers;
-      if (activeCategory !== "All") {
-        result = result.filter(item => item.category === activeCategory);
-      }
-      if (searchQuery) {
-        result = result.filter(item => 
-          item.title.toLowerCase().includes(searchQuery) || 
-          item.category.toLowerCase().includes(searchQuery)
-        );
-      }
-      return result;
-    }
+    function renderSections() {
+      sectionsContainer.innerHTML = "";
 
-    function renderWallpapers() {
-      wallpaperGrid.innerHTML = "";
-      const filtered = getFilteredWallpapers();
+      CATEGORIES.forEach(category => {
+        const section = document.createElement("section");
+        section.className = "category-section";
+        section.id = "cat-" + category.toLowerCase();
 
-      if (filtered.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "empty-message";
-        empty.textContent = searchQuery ? "No wallpapers found for this search." : "No wallpapers found in this category.";
-        wallpaperGrid.appendChild(empty);
-        loadMoreContainer.style.display = "none";
-        return;
-      }
+        const heading = document.createElement("h2");
+        heading.className = "category-heading";
+        heading.textContent = category;
 
-      const paginatedList = filtered.slice(0, displayedCount);
+        const underline = document.createElement("div");
+        underline.className = "category-underline";
 
-      paginatedList.forEach(wallpaper => {
-        const card = document.createElement("article");
-        card.className = "wallpaper-card";
-        card.tabIndex = 0;
-        card.setAttribute("role", "button");
-        card.setAttribute("aria-label", "View " + wallpaper.title);
+        section.appendChild(heading);
+        section.appendChild(underline);
 
-        const img = document.createElement("img");
-        img.src = wallpaper.image;
-        img.alt = wallpaper.title;
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.onerror = function() {
-          this.style.opacity = "0.3";
-        };
+        const catItems = allWallpapers.filter(item => item.category === category);
 
-        card.appendChild(img);
-        card.addEventListener("click", () => openPreviewById(wallpaper.id));
-        card.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openPreviewById(wallpaper.id);
+        if (catItems.length === 0) {
+          const empty = document.createElement("p");
+          empty.className = "empty-category";
+          empty.textContent = "No wallpapers yet in this category.";
+          section.appendChild(empty);
+        } else {
+          const grid = document.createElement("div");
+          grid.className = "wallpaper-grid";
+
+          const visibleCount = categoryCounts[category] || PAGE_SIZE;
+          const visibleItems = catItems.slice(0, visibleCount);
+
+          visibleItems.forEach((wallpaper, idx) => {
+            const card = document.createElement("article");
+            card.className = "wallpaper-card";
+            card.tabIndex = 0;
+            card.setAttribute("role", "button");
+            card.setAttribute("aria-label", "View " + wallpaper.title);
+
+            const img = document.createElement("img");
+            img.src = wallpaper.image;
+            img.alt = wallpaper.title;
+            img.loading = "lazy";
+            img.decoding = "async";
+            img.onerror = function() {
+              this.style.opacity = "0.3";
+            };
+
+            card.appendChild(img);
+            card.addEventListener("click", () => openPreview(catItems, idx));
+            card.addEventListener("keydown", (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openPreview(catItems, idx);
+              }
+            });
+
+            grid.appendChild(card);
+          });
+
+          section.appendChild(grid);
+
+          if (catItems.length > visibleCount) {
+            const showMoreWrap = document.createElement("div");
+            showMoreWrap.className = "show-more-wrap";
+
+            const showMoreBtn = document.createElement("button");
+            showMoreBtn.className = "show-more-btn";
+            showMoreBtn.textContent = "Show more";
+            showMoreBtn.addEventListener("click", () => {
+              categoryCounts[category] += PAGE_SIZE;
+              renderSections();
+            });
+
+            showMoreWrap.appendChild(showMoreBtn);
+            section.appendChild(showMoreWrap);
           }
-        });
-        wallpaperGrid.appendChild(card);
+        }
+
+        sectionsContainer.appendChild(section);
       });
-
-      if (filtered.length > displayedCount) {
-        loadMoreContainer.style.display = "flex";
-      } else {
-        loadMoreContainer.style.display = "none";
-      }
     }
-
-    loadMoreBtn.addEventListener("click", () => {
-      displayedCount += PAGE_SIZE;
-      renderWallpapers();
-    });
 
     // =========================================================================
-    // 4. PREVIEW MODAL & NAVIGATION
+    // 4. PREVIEW OVERLAY, NAVIGATION & SWIPE
     // =========================================================================
     const previewOverlay = document.getElementById("preview-overlay");
     const previewImage = document.getElementById("preview-image");
@@ -746,10 +941,9 @@
       }, 3000);
     }
 
-    function openPreviewById(id) {
-      const currentList = getFilteredWallpapers();
-      previewIndex = currentList.findIndex(item => item.id === id);
-      if (previewIndex === -1) return;
+    function openPreview(list, index) {
+      previewList = list;
+      previewIndex = index;
       updatePreviewContent();
       previewOverlay.classList.add("show");
       document.body.style.overflow = "hidden";
@@ -757,9 +951,8 @@
     }
 
     function updatePreviewContent() {
-      const currentList = getFilteredWallpapers();
-      if (previewIndex < 0 || previewIndex >= currentList.length) return;
-      const current = currentList[previewIndex];
+      if (previewIndex < 0 || previewIndex >= previewList.length) return;
+      const current = previewList[previewIndex];
       previewImage.src = current.image;
       previewImage.alt = current.title;
       previewCategory.textContent = current.category;
@@ -773,9 +966,8 @@
     }
 
     function navigatePreview(direction) {
-      const currentList = getFilteredWallpapers();
-      if (!currentList.length) return;
-      previewIndex = (previewIndex + direction + currentList.length) % currentList.length;
+      if (!previewList.length) return;
+      previewIndex = (previewIndex + direction + previewList.length) % previewList.length;
       updatePreviewContent();
       reportModal.classList.remove("show");
     }
@@ -805,7 +997,6 @@
       }
     });
 
-    // Touch swipe handling
     let touchStartX = 0;
     let touchStartY = 0;
 
@@ -830,11 +1021,10 @@
     }, { passive: true });
 
     // =========================================================================
-    // 5. DOWNLOAD HANDLER
+    // 5. DOWNLOAD & REPORT
     // =========================================================================
     previewDownloadBtn.addEventListener("click", async () => {
-      const currentList = getFilteredWallpapers();
-      const current = currentList[previewIndex];
+      const current = previewList[previewIndex];
       if (!current) return;
 
       const rawTitle = current.title || "wallpaper";
@@ -863,9 +1053,6 @@
       }
     });
 
-    // =========================================================================
-    // 6. REPORT HANDLER
-    // =========================================================================
     previewReportBtn.addEventListener("click", () => {
       reportModal.classList.add("show");
     });
@@ -877,8 +1064,7 @@
     document.querySelectorAll(".report-option-btn").forEach(btn => {
       btn.addEventListener("click", async () => {
         const reason = btn.getAttribute("data-reason");
-        const currentList = getFilteredWallpapers();
-        const current = currentList[previewIndex];
+        const current = previewList[previewIndex];
         if (!current) return;
 
         try {
@@ -901,9 +1087,8 @@
     });
 
     // =========================================================================
-    // 7. INITIALIZE
+    // 6. INITIALIZE
     // =========================================================================
-    renderCategories();
     loadWallpapers();
   </script>
 </body>
