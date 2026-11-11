@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Apna Wallpaper</title>
+  <meta name="description" content="Privacy Policy for Apna Wallpaper.">
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://apna-wallpapers-a3pf.vercel.app/privacy.html" />
+  <link rel="icon" type="image/png" href="/apna-wallpaper-logo-512.png" />
+  <link rel="apple-touch-icon" href="/apna-wallpaper-logo-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8156133961234793" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #0B0B0B;
+      --card: #141414;
+      --border: #222222;
+      --gold: #C9A227;
+      --cream: #F3EBD8;
+      --gray: #A0A0A0;
+      --dim: #666666;
+      --radius: 10px;
+      --header-h: 64px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-h);
+      z-index: 100;
+      background: #0B0B0B;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--gold);
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-gold-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gold-outline:hover {
+      background: rgba(201, 162, 39, 0.12);
+    }
+
+    .menu-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 38px;
+      height: 38px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+      transition: border-color 0.2s;
+    }
+
+    .menu-btn:hover {
+      border-color: var(--gold);
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background-color: var(--cream);
+      border-radius: 2px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(var(--header-h) + 4px);
+      right: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 180px;
+      display: none;
+      flex-direction: column;
+      padding: 6px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+      z-index: 120;
+    }
+
+    .dropdown-menu.show {
+      display: flex;
+    }
+
+    .dropdown-item {
+      color: var(--cream);
+      text-decoration: none;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(201, 162, 39, 0.12);
+      color: var(--gold);
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: calc(var(--header-h) + 32px) 20px 64px;
+      flex: 1;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--gold);
+    }
+
+    .back-link-top {
+      margin-bottom: 20px;
+    }
+
+    .back-link-bottom {
+      margin-top: 32px;
+    }
+
+    .page-title {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .last-updated {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    .content-section {
+      margin-bottom: 24px;
+    }
+
+    .content-section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .content-section p {
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .content-section a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .footer-brand-sub {
+      color: var(--gray);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--dim);
+      font-size: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/index.html" class="brand" aria-label="Apna Wallpaper Home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#C9A227"/>
+          <path d="M18.5 3.5L19.2 5.3L21 6L19.2 6.7L18.5 8.5L17.8 6.7L16 6L17.8 5.3L18.5 3.5Z" fill="#C9A227"/>
+        </svg>
+        <span class="brand-name">Apna Wallpaper</span>
+      </a>
+      <div class="header-actions">
+        <a href="/upload.html" class="btn-gold-outline">Upload</a>
+        <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="dropdown-menu" id="dropdown-menu" aria-label="Navigation menu">
+        <a href="/index.html" class="dropdown-item">Home</a>
+        <a href="/index.html#categories-start" class="dropdown-item">Categories</a>
+        <a href="/upload.html" class="dropdown-item">Upload</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="/index.html" class="back-link back-link-top">&larr; Back to wallpapers</a>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="last-updated">Last updated: November 10, 2026</p>
+
+    <section class="content-section">
+      <h2>Who we are</h2>
+      <p>Apna Wallpaper is a free website for sharing phone wallpapers.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Information we collect</h2>
+      <p>When a visitor uploads a wallpaper, we save the image, the title, the chosen category, and the name the visitor types (or "Anonymous" if empty). When a visitor sends a report, we save the wallpaper and the reason. We do not ask for passwords, phone numbers, or payment details.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>How we use information</h2>
+      <p>We use this information to show wallpapers on the site and to review reports.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Cookies and advertising</h2>
+      <p>This site uses Google AdSense to show ads. Google and its partners may use cookies to show ads based on a visitor's previous visits to this site and other sites. Visitors can learn more and opt out at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google's ads settings page</a>.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Remembered choices</h2>
+      <p>The site saves the last category chosen on the upload page in the visitor's browser only.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Copyright and removal</h2>
+      <p>If you own a wallpaper shown here and want it removed, contact us on the <a href="/contact.html">Contact page</a> and we will remove it.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Changes</h2>
+      <p>This policy may be updated, and the date at the top will change.</p>
+    </section>
+
+    <a href="/index.html" class="back-link back-link-bottom">&larr; Back to wallpapers</a>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="/index.html" class="brand">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#C9A227"/>
+              <path d="M18.5 3.5L19.2 5.3L21 6L19.2 6.7L18.5 8.5L17.8 6.7L16 6L17.8 5.3L18.5 3.5Z" fill="#C9A227"/>
+            </svg>
+            <span class="brand-name">Apna Wallpaper</span>
+          </a>
+          <p class="footer-brand-sub">Beautiful Wallpapers for Your Phone</p>
+        </div>
+        <div class="footer-links">
+          <a href="/index.html">Home</a>
+          <a href="/index.html#categories-start">Categories</a>
+          <a href="/upload.html">Upload</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/about.html">About</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Apna Wallpaper. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = dropdownMenu.classList.toggle("show");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    dropdownMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        dropdownMenu.classList.remove("show");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!dropdownMenu.contains(e.target) && e.target !== menuBtn) {
+        dropdownMenu.classList.remove("show");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
+</body>
+</html>
