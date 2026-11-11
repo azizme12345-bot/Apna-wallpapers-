@@ -253,6 +253,59 @@
       font-size: 14px;
     }
 
+    /* CATEGORY BAR */
+    .category-bar-wrap {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 12px;
+    }
+
+    .category-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 4px 0;
+    }
+
+    .category-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      .category-bar {
+        justify-content: center;
+        overflow-x: visible;
+      }
+    }
+
+    .cat-pill {
+      flex-shrink: 0;
+      background: var(--card);
+      color: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cat-pill:hover {
+      border-color: var(--gold);
+    }
+
+    .cat-pill.active {
+      background: var(--gold);
+      color: #0B0B0B;
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
     /* MAIN CONTENT */
     .main-content {
       width: 100%;
@@ -275,7 +328,7 @@
 
     /* CATEGORY SECTIONS */
     .category-section {
-      padding-top: 40px;
+      padding-top: 32px;
       margin-bottom: 24px;
     }
 
@@ -336,11 +389,40 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.35s ease;
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.25s ease;
+    }
+
+    .wallpaper-card.loaded img {
+      opacity: 1;
     }
 
     .wallpaper-card:hover img {
       transform: scale(1.03);
+    }
+
+    .card-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0 -12px;
+      border: 2px solid rgba(201, 162, 39, 0.22);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: card-spin 0.75s linear infinite;
+      pointer-events: none;
+    }
+
+    .wallpaper-card.loaded .card-spinner {
+      display: none;
+    }
+
+    @keyframes card-spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .empty-category {
@@ -681,6 +763,10 @@
     </div>
   </section>
 
+  <div class="category-bar-wrap">
+    <div class="category-bar" id="category-bar" role="tablist" aria-label="Wallpaper categories"></div>
+  </div>
+
   <main class="main-content" id="categories-start">
     <div class="status-message" id="status-message">Loading wallpapers...</div>
     <div id="sections-container"></div>
@@ -768,6 +854,7 @@
     const categoryCounts = {};
     CATEGORIES.forEach(cat => { categoryCounts[cat] = PAGE_SIZE; });
 
+    let activeCategory = "All";
     let allWallpapers = [];
     let previewList = [];
     let previewIndex = 0;
@@ -799,10 +886,34 @@
     });
 
     // =========================================================================
-    // 3. LOAD & RENDER CATEGORY SECTIONS
+    // 3. CATEGORY BAR, LOAD & RENDER CATEGORY SECTIONS
     // =========================================================================
+    const categoryBar = document.getElementById("category-bar");
     const statusMessage = document.getElementById("status-message");
     const sectionsContainer = document.getElementById("sections-container");
+
+    function renderCategoryBar() {
+      categoryBar.innerHTML = "";
+      const items = ["All", ...CATEGORIES];
+
+      items.forEach(cat => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "cat-pill" + (activeCategory === cat ? " active" : "");
+        btn.textContent = cat;
+        btn.setAttribute("role", "tab");
+        btn.setAttribute("aria-selected", String(activeCategory === cat));
+        btn.addEventListener("click", () => {
+          activeCategory = cat;
+          renderCategoryBar();
+          renderSections();
+          document.getElementById("categories-start").scrollIntoView({ behavior: "smooth" });
+        });
+        categoryBar.appendChild(btn);
+      });
+    }
+
+    renderCategoryBar();
 
     async function loadWallpapers() {
       statusMessage.style.display = "block";
@@ -837,7 +948,11 @@
     function renderSections() {
       sectionsContainer.innerHTML = "";
 
-      CATEGORIES.forEach(category => {
+      const categoriesToShow = activeCategory === "All"
+        ? CATEGORIES
+        : CATEGORIES.filter(c => c === activeCategory);
+
+      categoriesToShow.forEach(category => {
         const section = document.createElement("section");
         section.className = "category-section";
         section.id = "cat-" + category.toLowerCase();
@@ -873,15 +988,26 @@
             card.setAttribute("role", "button");
             card.setAttribute("aria-label", "View " + wallpaper.title);
 
+            const spinner = document.createElement("div");
+            spinner.className = "card-spinner";
+            spinner.setAttribute("aria-hidden", "true");
+
             const img = document.createElement("img");
             img.src = wallpaper.image;
             img.alt = wallpaper.title;
             img.loading = "lazy";
             img.decoding = "async";
-            img.onerror = function() {
-              this.style.opacity = "0.3";
+            img.onload = function() {
+              card.classList.add("loaded");
             };
+            img.onerror = function() {
+              card.style.display = "none";
+            };
+            if (img.complete && img.naturalWidth > 0) {
+              card.classList.add("loaded");
+            }
 
+            card.appendChild(spinner);
             card.appendChild(img);
             card.addEventListener("click", () => openPreview(catItems, idx));
             card.addEventListener("keydown", (e) => {
