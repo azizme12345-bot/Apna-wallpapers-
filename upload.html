@@ -318,6 +318,29 @@
       color: var(--dim);
     }
 
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--gold);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-group a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
     .submit-btn {
       width: 100%;
       background: var(--gold);
@@ -521,6 +544,7 @@
           <a href="/index.html#categories-start">Categories</a>
           <a href="/upload.html">Upload</a>
           <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
           <a href="/about.html">About</a>
           <a href="/contact.html">Contact</a>
         </div>
@@ -697,6 +721,11 @@
         return;
       }
 
+      if (!termsAgreeCheckbox.checked) {
+        showError("Please confirm you own this wallpaper or have permission to share it.");
+        return;
+      }
+
       const rawName = uploaderNameInput.value.trim();
       const uploaderName = rawName ? rawName : "Anonymous";
       const chosenCategory = uploadCategorySelect.value;
@@ -747,6 +776,7 @@
 
         fileInput.value = "";
         uploaderNameInput.value = "";
+        termsAgreeCheckbox.checked = false;
         previewWrap.style.display = "none";
         if (selectedFileObjectUrl) {
           URL.revokeObjectURL(selectedFileObjectUrl);
