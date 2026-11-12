@@ -766,7 +766,7 @@
         }
 
         if (!publicUrl) {
-          publicUrl = await fileToDataUrl(file);
+          throw new Error("Image storage failed");
         }
 
         const { error: insertError } = await supabaseClient

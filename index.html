@@ -936,7 +936,7 @@
 
         allWallpapers = (data || []).map(row => ({
           id: row.id,
-          title: row.title,
+          title: (row.category || "Mobile") + " Wallpaper" + (row.uploaded_by && row.uploaded_by !== "Anonymous" ? " by " + row.uploaded_by : ""),
           category: row.category,
           image: row.image_url
         }));
