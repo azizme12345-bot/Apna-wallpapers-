@@ -521,6 +521,11 @@
         <select id="upload-category" class="form-select"></select>
       </div>
 
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms-agree">
+        <label for="terms-agree">I confirm I own this wallpaper or have permission to share it, and it follows the <a href="/terms.html">Content Rules</a>.</label>
+      </div>
+
       <button type="submit" id="submit-btn" class="submit-btn">Upload Wallpaper</button>
       <p class="upload-note">Your wallpaper will be visible to everyone on this site.</p>
     </form>
@@ -643,6 +648,7 @@
     const msgError = document.getElementById("msg-error");
     const msgSuccess = document.getElementById("msg-success");
     const submitBtn = document.getElementById("submit-btn");
+    const termsAgreeCheckbox = document.getElementById("terms-agree");
 
     let selectedFileObjectUrl = null;
 
