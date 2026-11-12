@@ -16,6 +16,9 @@ export default defineConfig(() => {
         input: {
           main: path.resolve(__dirname, 'index.html'),
           upload: path.resolve(__dirname, 'upload.html'),
+          about: path.resolve(__dirname, 'about.html'),
+          contact: path.resolve(__dirname, 'contact.html'),
+          privacy: path.resolve(__dirname, 'privacy.html'),
         },
       },
     },
